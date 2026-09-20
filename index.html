@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Meus Scripts</title>
 
     <style>
@@ -14,100 +13,117 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #0b0b12;
+            background: #111;
             color: white;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px 35px;
-        }
-
-        header h1 {
-            font-size: 42px;
-            margin: 0 0 10px;
-        }
-
-        header p {
-            color: #aaa;
-            font-size: 17px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 30px 15px;
         }
 
         .container {
-            width: 90%;
-            max-width: 750px;
-            margin: auto;
+            width: 100%;
+            max-width: 700px;
         }
 
-        .script {
-            background: #171722;
-            border: 1px solid #29293a;
-            border-radius: 15px;
-            padding: 22px;
-            margin-bottom: 18px;
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .script h2 {
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .script-box {
+            background: #1c1c1c;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+
+        .script-box h2 {
             margin-top: 0;
         }
 
-        .script p {
-            color: #aaa;
+        pre {
+            background: #080808;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: #ddd;
         }
 
-        .botao {
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 10px;
-            background: #7c3cff;
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #5865f2;
             color: white;
-            text-decoration: none;
+            font-size: 16px;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        .botao:hover {
-            opacity: 0.85;
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #mensagem {
+            text-align: center;
+            margin-top: 12px;
+            color: #7cff7c;
+            display: none;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🔥 MEUS SCRIPTS</h1>
-        <p>Escolha o script que você deseja.</p>
-    </header>
+    <div class="container">
 
-    <main class="container">
+        <h1>MEUS SCRIPTS</h1>
 
-        <div class="script">
-            <h2>Script 1</h2>
-            <p>Descrição do primeiro script.</p>
+        <p class="subtitle">
+            Script disponível abaixo
+        </p>
 
-            <a class="botao" href="#">
-                PEGAR SCRIPT
-            </a>
+        <div class="script-box">
+
+            <h2>Meu Script</h2>
+
+            <pre id="codigo">loadstring(game:HttpGet("https://raw.githubusercontent.com/tienkhanh1/spicy/main/Chilli.lua"))()</pre>
+
+            <button onclick="copiarScript()">
+                COPIAR SCRIPT
+            </button>
+
+            <p id="mensagem">Script copiado! ✅</p>
+
         </div>
 
-        <div class="script">
-            <h2>Script 2</h2>
-            <p>Descrição do segundo script.</p>
+    </div>
 
-            <a class="botao" href="#">
-                PEGAR SCRIPT
-            </a>
-        </div>
+    <script>
+        function copiarScript() {
+            const codigo = document.getElementById("codigo").innerText;
 
-        <div class="script">
-            <h2>Script 3</h2>
-            <p>Descrição do terceiro script.</p>
+            navigator.clipboard.writeText(codigo).then(function() {
+                const mensagem = document.getElementById("mensagem");
 
-            <a class="botao" href="#">
-                PEGAR SCRIPT
-            </a>
-        </div>
+                mensagem.style.display = "block";
 
-    </main>
+                setTimeout(function() {
+                    mensagem.style.display = "none";
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
